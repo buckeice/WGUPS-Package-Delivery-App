@@ -13,6 +13,7 @@ class Package:
         self.status = status
         self.left_hub = None
         self.delivery_time = None
+        self.truck = None
 
     def get_id(self):
         return self.package_id

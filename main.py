@@ -51,13 +51,13 @@ def load_package_list_to_table(p_list, h_table):
 
 # Initializing truck objects
 truck_1 = truck.Truck(0.0, [1, 13, 15, 14, 16, 19, 20, 34, 40, 30, 31, 4, 25, 7, 29], '4001 South 700 East',
-                      datetime.datetime(date.today().year, date.today().month, date.today().day, 8, 0))
+                      datetime.datetime(date.today().year, date.today().month, date.today().day, 8, 0), 1)
 
 truck_2 = truck.Truck(0.0, [3, 18, 36, 38, 6, 28, 32, 2, 10, 21, 22, 23, 24, 26, 37], '4001 South 700 East',
-                      datetime.datetime(date.today().year, date.today().month, date.today().day, 9, 5))
+                      datetime.datetime(date.today().year, date.today().month, date.today().day, 9, 5), 2)
 
 truck_3 = truck.Truck(0.0, [9, 17, 11, 12, 33, 35, 5, 39, 27, 8], '4001 South 700 East',
-                      datetime.datetime(date.today().year, date.today().month, date.today().day, 10, 20))
+                      datetime.datetime(date.today().year, date.today().month, date.today().day, 10, 20), 3)
 
 # Creating hash table
 package_table = hash_table.HashTable(40)
@@ -107,7 +107,9 @@ def nearest_neighbor(truck):
                     current_package = package
 
             # The package added to the package list has its status changed to 'DELIVERED'
+            # The package is also associated with a truck by the current truck's number
             current_package.status = 'DELIVERED'
+            current_package.truck = truck.truck_number
 
             # Changes truck's time
             time_delta = datetime.timedelta(hours=(distance_next_location / truck.speed))
@@ -175,13 +177,15 @@ if user_input == '1':
         status = package.status
         left_hub = package.left_hub
         delivery = package.delivery_time
+        truck_num = package.truck
         string_id = str(p_id)
         string_destination = str(address)
         string_deadline = str(deadline)
         string_status = str(status)
+        string_truck = str(truck_num)
 
-        print('ID: ' + string_id.ljust(10) + 'DESTINATION: ' + string_destination.ljust(45) + 'DEADLINE: ' +
-              string_deadline.ljust(20) + 'STATUS: ' + string_status)
+        print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
+              string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' + string_status)
 
 # INTERFACE FOR INDIVIDUAL PACKAGE
 if user_input == '2':
@@ -223,16 +227,17 @@ if user_input == '2':
             status = found_package.status
             left_hub = found_package.left_hub
             delivery = found_package.delivery_time
+            truck_num = package.truck
             string_id = str(p_id)
             string_destination = str(address)
             string_deadline = str(deadline)
             string_status = str(status)
+            string_truck = str(truck_num)
 
-            print('ID: ' + string_id.ljust(10) + 'DESTINATION: ' + string_destination.ljust(45) + 'DEADLINE: ' +
-                  string_deadline.ljust(20) + 'STATUS: ' + string_status)
+            print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
+                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' + string_status)
 
 
 # Quits the application if user does not type 1 or 2
 if user_input != '1' or '2':
-    print('YOU HAVE QUIT THE APPLICATION')
     quit()
