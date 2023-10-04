@@ -30,7 +30,7 @@ def find_distance(x, y):
         return distance
 
 
-# Used to find the address' index in the distance table csv
+# Used to find the address' index in the distance table list
 # Complexity: Space O(n), Time O(n)
 def find_index_from_address(address):
     index = -1
@@ -135,13 +135,14 @@ nearest_neighbor(truck_1)
 nearest_neighbor(truck_2)
 nearest_neighbor(truck_3)
 
-# Combines all delivered packages into a single list and sorts that list by package ID
+# Combines all delivered packages into a single list
 ultimate_package_list = truck_1.packages + truck_2.packages + truck_3.packages
 
-# Uses Python sort(), which uses the Timsort algorithm and has the following complexities
+# Uses Python sort() to sort the list by package ID, which uses the Timsort algorithm and has the following complexities
 # Complexity: Space O(n), Time O(n log n)
 ultimate_package_list.sort(key=lambda x: int(x.package_id))
 
+# Adds the mileage of the trucks to the total mileage
 total_mileage = truck_1.mileage + truck_2.mileage + truck_3.mileage
 
 # USER INTERFACE
@@ -183,11 +184,14 @@ if user_input == '1':
         string_deadline = str(deadline)
         string_status = str(status)
         string_truck = str(truck_num)
+        string_delivery = str(delivery)
 
         print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
-              string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' + string_status)
+                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
+                  string_status.ljust(20) + 'TIME OF DELIVERY: ' + string_delivery)
 
 # INTERFACE FOR INDIVIDUAL PACKAGE
+# Complexity: Space O(n), Time O(n)
 if user_input == '2':
     print('PLEASE TYPE A PACKAGE ID')
     user_id_input = input('INPUT: ')
@@ -233,9 +237,11 @@ if user_input == '2':
             string_deadline = str(deadline)
             string_status = str(status)
             string_truck = str(truck_num)
+            string_delivery = str(delivery)
 
             print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
-                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' + string_status)
+                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
+                  string_status.ljust(20) + 'TIME OF DELIVERY: ' + string_delivery)
 
 
 # Quits the application if user does not type 1 or 2

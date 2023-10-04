@@ -1,7 +1,7 @@
 import packages
 
 """
-HashTable uses direct hashing with subtraction preprocessing for keys. This ensures that the packages 1-40 will
+HashTable uses direct hashing with subtraction processing for keys. This ensures that packages 1-40 will
 be inserted into the correct indices 0-39
 """
 

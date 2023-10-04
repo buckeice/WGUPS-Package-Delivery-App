@@ -1,4 +1,4 @@
-# This file contains classes related to package objects
+# This file contains the Package class
 class Package:
     def __init__(self, package_id, address, city, state, zipcode, delivery_deadline,
                  weight_kilo, note, status='AT HUB'):
@@ -41,10 +41,3 @@ class Package:
 
     def get_status(self):
         return self.status
-
-class PackageList:
-    def __init__(self):
-        self.list = []
-
-    def add_package(self, package):
-        self.list.append(package)
