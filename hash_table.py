@@ -12,6 +12,7 @@ class HashTable:
         self.list = [None] * num_packages
         self.size = len(self.list)
 
+    # Complexity: Space O(1), Time O(1)
     def __get_hash_index(self, key):
         """
         Returns the index for the key by subtracting the key by 1
@@ -20,6 +21,7 @@ class HashTable:
         """
         return int(key) - 1
 
+    # Complexity: Space O(1), Time O(1)
     def add(self, key, value):
         """
         Method inserts data into hash table
@@ -30,6 +32,7 @@ class HashTable:
         hash_index = self.__get_hash_index(key)
         self.list[hash_index] = hash_data
 
+    # Complexity: Space O(1), Time O(1)
     def get(self, key):
         """
         Returns data associated with a key
@@ -43,6 +46,7 @@ class HashTable:
             return data[1]
         return None
 
+    # Complexity: Space O(1), Time O(1)
     def remove(self, key):
         """
         Removes the data at the key's hash index
@@ -53,18 +57,3 @@ class HashTable:
         if self.list[hash_index] is not None:
             self.list.pop(hash_index)
         return None
-
-    def print(self):
-        print('--ITEMS--')
-        for item in self.list:
-            print(str(item))
-
-    # LOOKUP FUNCTIONS
-
-    def lookup_address(self, package_id):
-        """
-        Gets the specified package's associated address by using the package ID as the search key in the hash table.
-        :param package_id: The ID of the package to search. To be used as the key.
-        :return: Returns the package's address
-        """
-        return packages.Package.get_address(self.get(package_id))

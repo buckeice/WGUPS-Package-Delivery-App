@@ -14,6 +14,7 @@ class Package:
         self.left_hub = None
         self.delivery_time = None
         self.truck = None
+        self.delivery_time_string = None
 
     def get_id(self):
         return self.package_id

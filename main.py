@@ -171,14 +171,22 @@ if user_input == '1':
         if package.left_hub > user_datetime:
             package.status = 'AT HUB'
 
+        if package.delivery_time > user_datetime:
+            package.delivery_time_string = 'NOT DELIVERED'
+        else:
+            package.delivery_time_string = str(package.delivery_time)
+
     for package in ultimate_package_list:
         p_id = package.package_id
         address = package.address
         deadline = package.delivery_deadline
         status = package.status
         left_hub = package.left_hub
-        delivery = package.delivery_time
+        delivery = package.delivery_time_string
         truck_num = package.truck
+        city = package.city
+        weight = package.weight_kilo
+        zip = package.zipcode
         string_id = str(p_id)
         string_destination = str(address)
         string_deadline = str(deadline)
@@ -187,8 +195,9 @@ if user_input == '1':
         string_delivery = str(delivery)
 
         print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
-                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
-                  string_status.ljust(20) + 'TIME OF DELIVERY: ' + string_delivery)
+              string_destination.ljust(45) + 'CITY: ' + city.ljust(20) + 'WEIGHT: ' + str(weight).ljust(5) + 'ZIP: '
+              + str(zip).ljust(15) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
+              string_status.ljust(20) + 'TIME OF DELIVERY: ' + string_delivery)
 
 # INTERFACE FOR INDIVIDUAL PACKAGE
 # Complexity: Space O(n), Time O(n)
@@ -223,6 +232,11 @@ if user_input == '2':
             if package.left_hub > user_datetime:
                 package.status = 'AT HUB'
 
+            if package.delivery_time > user_datetime:
+                package.delivery_time_string = 'NOT DELIVERED'
+            else:
+                package.delivery_time_string = str(package.delivery_time)
+
             found_package = package
 
             p_id = found_package.package_id
@@ -230,8 +244,11 @@ if user_input == '2':
             deadline = found_package.delivery_deadline
             status = found_package.status
             left_hub = found_package.left_hub
-            delivery = found_package.delivery_time
+            delivery = found_package.delivery_time_string
             truck_num = package.truck
+            city = found_package.city
+            weight = found_package.weight_kilo
+            zip = found_package.zipcode
             string_id = str(p_id)
             string_destination = str(address)
             string_deadline = str(deadline)
@@ -240,9 +257,9 @@ if user_input == '2':
             string_delivery = str(delivery)
 
             print('ID: ' + string_id.ljust(10) + 'ON TRUCK: ' + string_truck.ljust(10) + 'DESTINATION: ' +
-                  string_destination.ljust(45) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
+                  string_destination.ljust(45) + 'CITY: ' + city.ljust(20) + 'WEIGHT: ' + str(weight).ljust(
+                5) + 'ZIP: ' + str(zip).ljust(15) + 'DEADLINE: ' + string_deadline.ljust(20) + 'STATUS: ' +
                   string_status.ljust(20) + 'TIME OF DELIVERY: ' + string_delivery)
-
 
 # Quits the application if user does not type 1 or 2
 if user_input != '1' or '2':
